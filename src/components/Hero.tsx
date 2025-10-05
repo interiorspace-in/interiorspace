@@ -1,15 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-interior.jpg";
+
 const Hero = () => {
-  const scrollToEstimate = () => {
-    const element = document.getElementById("estimate");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-  };
+  const navigate = useNavigate();
   return <section className="relative min-h-screen flex items-center pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
@@ -30,7 +25,7 @@ const Hero = () => {
 10-year warranty. Serving Pune, Pimpri Chinchwad, and surrounding areas.</p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="text-lg px-8" onClick={scrollToEstimate}>
+            <Button size="lg" className="text-lg px-8" onClick={() => navigate("/get-estimate")}>
               Get Free Estimate
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
