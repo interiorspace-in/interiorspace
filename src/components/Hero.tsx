@@ -1,24 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-interior.jpg";
-
 const Hero = () => {
   const scrollToEstimate = () => {
     const element = document.getElementById("estimate");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center pt-16">
+  return <section className="relative min-h-screen flex items-center pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Luxury Interior Design"
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImage} alt="Luxury Interior Design" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40" />
       </div>
 
@@ -31,10 +26,8 @@ const Hero = () => {
             Into Reality
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            Premium interior design solutions with 45-day delivery and 10-year warranty. 
-            Serving Pune, Pimpri Chinchwad, and surrounding areas.
-          </p>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8">Premium interior design solutions with 45-day delivery and 
+10-year warranty. Serving Pune, Pimpri Chinchwad, and surrounding areas.</p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" className="text-lg px-8" onClick={scrollToEstimate}>
@@ -61,8 +54,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
