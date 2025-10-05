@@ -19,14 +19,74 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Happy Customer",
-    text: "Best Quality Furniture at Reasonable Price, Excellent service by Hamidbhai! The team was professional and delivered on time.",
+    name: "Akshay Mahamuni",
+    text: "I purchased sofa, dining table and center table from this showroom. Quality of the product is very good and design is also good. They also delivered the products on the committed time. Overall experience is very good.",
     rating: 5,
   },
   {
-    name: "Satisfied Client",
-    text: "At the showroom there is plenty of options for household furniture's. Very Good And Affordable price and Best Experience overall!",
+    name: "Swapnil Mulik",
+    text: "Absolutely love my sofa. It exceeded my expectations in quality, design, and comfort. Hamid provided excellent guidance. Highly recommend!",
     rating: 5,
+  },
+  {
+    name: "Ashutosh Shitoot",
+    text: "My experience was very nice. I bought a 6 seater sofa, coffee table and dining table. I am happy with their products, services and prices. I appreciate their customer service. They delivered products on time.",
+    rating: 5,
+  },
+  {
+    name: "Vikrant Gaikwad",
+    text: "Recently purchased sofa, dining table and centre table! Quality and design are very good. Easy to customise as per our requirement. I got delivery on time as committed.",
+    rating: 5,
+  },
+  {
+    name: "Bhushan N. G.",
+    text: "Customer service is very good. Sofas are very comfortable. Rates are reasonable and delivery is on time. Highly recommended.",
+    rating: 5,
+  },
+  {
+    name: "Abhishek Mane",
+    text: "Good quality products and also reasonable price. Hamid is very cooperative and experienced. Overall experience is really good and recommended.",
+    rating: 5,
+  },
+  {
+    name: "Prasad Tate",
+    text: "Bought Sofaset and dining table from Interior Space. Overall experience is good, Hamid was very cooperative and delivery was on time. Recommended.",
+    rating: 5,
+  },
+  {
+    name: "Sumedh Marathe",
+    text: "Really happy with the sofa and dining table. Perfect blend of Quality, Design, and Comfort. Hamid provided excellent support. Highly recommended!",
+    rating: 5,
+  },
+  {
+    name: "Amol Gawade",
+    text: "We purchased 6 seater sofa & dinning table. Excellent customer service with ontime delivery. Quality & price both are good. Overall best experience.",
+    rating: 5,
+  },
+  {
+    name: "Yogesh Koli",
+    text: "Best Quality Furniture at Reasonable Price, Excellent service by Hamidbhai!",
+    rating: 5,
+  },
+  {
+    name: "Amit Gawade",
+    text: "Very Good And Affordable price and Best Experience",
+    rating: 5,
+  },
+  {
+    name: "Rajesh Koli",
+    text: "At the showroom there is plenty of options for household furniture's.",
+    rating: 5,
+  },
+  {
+    name: "Sumit Gawade",
+    text: "Bought furniture and good customer service and quality of the furniture was very good",
+    rating: 4,
+  },
+  {
+    name: "Akshay Shirke",
+    text: "Good service and quality furniture",
+    rating: 4,
   },
 ];
 
@@ -90,18 +150,6 @@ const Testimonials = () => {
             ))}
           </div>
 
-          {/* Google Reviews Link */}
-          <div className="text-center mt-8">
-            <a
-              href="https://maps.app.goo.gl/6aekHNxkd2sgDLnq8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary hover:underline"
-            >
-              <Star className="h-4 w-4 fill-primary" />
-              View all 37 reviews on Google
-            </a>
-          </div>
         </div>
       </div>
     </section>
