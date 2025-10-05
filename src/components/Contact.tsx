@@ -1,9 +1,7 @@
 import { MapPin, Phone, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 const Contact = () => {
-  return (
-    <section id="contact" className="py-20 bg-secondary/30">
+  return <section id="contact" className="bg-secondary/30 py-[60px]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
@@ -19,12 +17,7 @@ const Contact = () => {
               <Phone className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Call or WhatsApp</h3>
-            <a
-              href="https://wa.me/919175956905"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               +91 91759 56905
             </a>
           </div>
@@ -35,12 +28,7 @@ const Contact = () => {
               <MapPin className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Visit Our Showroom</h3>
-            <a
-              href="https://maps.app.goo.gl/6aekHNxkd2sgDLnq8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a href="https://maps.app.goo.gl/6aekHNxkd2sgDLnq8" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
               Ravet, Pune 412101
             </a>
           </div>
@@ -52,28 +40,13 @@ const Contact = () => {
             </div>
             <h3 className="text-lg font-semibold mb-2">Follow Us</h3>
             <div className="flex justify-center gap-4 mt-3">
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a
-                href="https://wa.me/919175956905"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
+              <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 <MessageCircle className="h-6 w-6" />
               </a>
             </div>
@@ -94,24 +67,19 @@ const Contact = () => {
                 Book Free Consultation
               </Button>
             </a>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => {
-                const element = document.getElementById("estimate");
-                if (element) {
-                  element.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="w-full sm:w-auto"
-            >
+            <Button size="lg" variant="outline" onClick={() => {
+            const element = document.getElementById("estimate");
+            if (element) {
+              element.scrollIntoView({
+                behavior: "smooth"
+              });
+            }
+          }} className="w-full sm:w-auto">
               Get Free Estimate
             </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
