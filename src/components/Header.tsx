@@ -24,16 +24,22 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
-              Services
+              Full Home Interiors
             </button>
-            <button onClick={() => scrollToSection("why-us")} className="text-foreground hover:text-primary transition-colors">
-              Why Us
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+              Modular Kitchens
             </button>
-            <button onClick={() => scrollToSection("testimonials")} className="text-foreground hover:text-primary transition-colors">
-              Testimonials
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+              Living Rooms
             </button>
-            <button onClick={() => scrollToSection("contact")} className="text-foreground hover:text-primary transition-colors">
-              Contact
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+              Bedrooms
+            </button>
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+              Wardrobes
+            </button>
+            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+              Office Spaces
             </button>
           </nav>
 
@@ -64,16 +70,22 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col gap-4">
               <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
-                Services
+                Full Home Interiors
               </button>
-              <button onClick={() => scrollToSection("why-us")} className="text-left text-foreground hover:text-primary transition-colors">
-                Why Us
+              <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
+                Modular Kitchens
               </button>
-              <button onClick={() => scrollToSection("testimonials")} className="text-left text-foreground hover:text-primary transition-colors">
-                Testimonials
+              <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
+                Living Rooms
               </button>
-              <button onClick={() => scrollToSection("contact")} className="text-left text-foreground hover:text-primary transition-colors">
-                Contact
+              <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
+                Bedrooms
+              </button>
+              <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
+                Wardrobes
+              </button>
+              <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-colors">
+                Office Spaces
               </button>
               <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer" className="w-full">
                 <Button variant="outline" className="w-full">
