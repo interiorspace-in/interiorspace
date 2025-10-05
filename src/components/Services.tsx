@@ -1,43 +1,55 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import bedroomImg from "@/assets/bedroom.jpg";
 import kitchenImg from "@/assets/kitchen.jpg";
 import livingRoomImg from "@/assets/living-room.jpg";
 import officeImg from "@/assets/office.jpg";
 import wardrobeImg from "@/assets/wardrobe.jpg";
+
 const services = [{
   title: "Full Home Interiors",
   image: livingRoomImg,
-  description: "Complete interior solutions for your entire home"
+  description: "Complete interior solutions for your entire home",
+  link: "/services/full-home-interiors"
 }, {
   title: "Modular Kitchens",
   image: kitchenImg,
-  description: "Modern and functional kitchen designs"
+  description: "Modern and functional kitchen designs",
+  link: "/services/modular-kitchens"
 }, {
   title: "Living Rooms",
   image: livingRoomImg,
-  description: "Elegant and comfortable living spaces"
+  description: "Elegant and comfortable living spaces",
+  link: "/services/living-rooms"
 }, {
   title: "Bedrooms",
   image: bedroomImg,
-  description: "Peaceful and personalized bedroom designs"
+  description: "Peaceful and personalized bedroom designs",
+  link: "/services/bedrooms"
 }, {
   title: "Wardrobes",
   image: wardrobeImg,
-  description: "Custom storage solutions for your needs"
+  description: "Custom storage solutions for your needs",
+  link: "/services/wardrobes"
 }, {
   title: "Sofa and Dinning",
   image: livingRoomImg,
-  description: "Stylish furniture for dining and relaxation"
+  description: "Stylish furniture for dining and relaxation",
+  link: "/services/sofa-dining"
 }, {
   title: "Entrance and Foyer",
   image: livingRoomImg,
-  description: "Make a lasting first impression"
+  description: "Make a lasting first impression",
+  link: "/services/entrance-foyer"
 }, {
   title: "Office Spaces",
   image: officeImg,
-  description: "Productive and inspiring work environments"
+  description: "Productive and inspiring work environments",
+  link: "/services/office-spaces"
 }];
 const Services = () => {
+  const navigate = useNavigate();
+
   return <section className="py-16 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 py-[10px]">
@@ -48,7 +60,11 @@ const Services = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
+          {services.map((service, index) => <Card 
+              key={index} 
+              className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => navigate(service.link)}
+            >
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
               </div>
