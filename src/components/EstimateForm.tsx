@@ -125,13 +125,6 @@ const EstimateForm = () => {
     <section id="estimate" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get Free Estimate</h2>
-            <p className="text-xl text-muted-foreground">
-              Tell us about your project and we'll get back to you with a detailed quote
-            </p>
-          </div>
-
           {!showForm ? (
             <div className="text-center">
               <Button 
