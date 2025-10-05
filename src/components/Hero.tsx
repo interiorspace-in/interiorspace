@@ -14,7 +14,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img src={heroImage} alt="Luxury Interior Design" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/40 py-[10px]" />
       </div>
 
       {/* Content */}
