@@ -8,7 +8,6 @@ import { Building2, Home as HomeIcon, Building, MapPin, Phone, Mail } from "luci
 import { toast } from "sonner";
 
 const EstimateForm = () => {
-  const [showForm, setShowForm] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [formData, setFormData] = useState({
     floorplan: "",
@@ -125,20 +124,9 @@ const EstimateForm = () => {
     <section id="estimate" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {!showForm ? (
-            <div className="text-center">
-              <Button 
-                onClick={() => setShowForm(true)}
-                size="lg"
-                className="text-lg px-12 py-6"
-              >
-                Get Free Estimate
-              </Button>
-            </div>
-          ) : (
-            <Card className="border-border">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-8">
+          <Card className="border-border">
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-8">
                   {/* Floorplan Section */}
                   <div>
                     <Label className="text-lg mb-4 block">Your floorplan</Label>
@@ -292,7 +280,6 @@ const EstimateForm = () => {
                 </form>
               </CardContent>
             </Card>
-          )}
         </div>
       </div>
     </section>
