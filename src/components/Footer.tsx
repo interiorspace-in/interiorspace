@@ -31,11 +31,10 @@ const Footer = () => {
             <ul className="space-y-2 text-background/80">
               <li>Careers</li>
               <li>Disclaimer</li>
-              <li>
-            </li>
-              <li>Terms & Conditions</li>
-              
-              
+              <li>Living Rooms</li>
+              <li>Bedrooms</li>
+              <li>Wardrobes</li>
+              <li>Office Spaces</li>
             </ul>
           </div>
 
