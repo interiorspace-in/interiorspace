@@ -31,37 +31,6 @@ const EntranceFoyer = () => {
               <img src={entrance2} alt="Grand entrance hallway" className="w-full h-[400px] object-cover rounded-lg shadow-lg" />
             </div>
 
-            <div className="max-w-3xl mx-auto space-y-6 mb-12">
-              <h2 className="text-3xl font-bold">Design Highlights</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Statement entrance doors and frames</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Elegant console tables and decor</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Feature walls and artwork displays</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Welcoming lighting solutions</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Smart storage for shoes and accessories</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Create Your Entrance
-              </Button>
-            </div>
           </div>
         </section>
       </main>

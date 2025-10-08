@@ -31,37 +31,6 @@ const FullHomeInteriors = () => {
               <img src={fullHome2} alt="Spacious full home design" className="w-full h-[400px] object-cover rounded-lg shadow-lg" />
             </div>
 
-            <div className="max-w-3xl mx-auto space-y-6 mb-12">
-              <h2 className="text-3xl font-bold">What We Offer</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Complete home design planning and execution</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Customized solutions for every room</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Premium materials and finishes</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>End-to-end project management</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Timely delivery with quality assurance</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Start Your Project Today
-              </Button>
-            </div>
           </div>
         </section>
       </main>

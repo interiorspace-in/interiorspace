@@ -33,37 +33,6 @@ const LivingRooms = () => {
               <img src={living3} alt="Scandinavian living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
             </div>
 
-            <div className="max-w-3xl mx-auto space-y-6 mb-12">
-              <h2 className="text-3xl font-bold">Design Elements</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Comfortable and stylish seating arrangements</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Custom entertainment units and storage</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Ambient and accent lighting solutions</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Premium fabrics and materials</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Personalized decor and finishing touches</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Create Your Living Space
-              </Button>
-            </div>
           </div>
         </section>
       </main>

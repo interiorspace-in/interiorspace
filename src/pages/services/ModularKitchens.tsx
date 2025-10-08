@@ -33,37 +33,6 @@ const ModularKitchens = () => {
               <img src={kitchen3} alt="Minimalist modular kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
             </div>
 
-            <div className="max-w-3xl mx-auto space-y-6 mb-12">
-              <h2 className="text-3xl font-bold">Features</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Customized modular units to fit your space</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Premium quality materials and hardware</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Intelligent storage solutions</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Modern appliances integration</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Easy maintenance and durability</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Design Your Kitchen
-              </Button>
-            </div>
           </div>
         </section>
       </main>

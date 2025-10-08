@@ -33,37 +33,6 @@ const OfficeSpaces = () => {
               <img src={office3} alt="Home office workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
             </div>
 
-            <div className="max-w-3xl mx-auto space-y-6 mb-12">
-              <h2 className="text-3xl font-bold">Workspace Features</h2>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Ergonomic furniture and workstations</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Efficient storage and organization systems</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Natural and task lighting integration</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Acoustic solutions for better focus</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>Technology integration and cable management</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center">
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Build Your Workspace
-              </Button>
-            </div>
           </div>
         </section>
       </main>
