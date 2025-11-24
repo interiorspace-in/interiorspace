@@ -41,7 +41,7 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer">
+            <a href="tel:+919175956905">
               <Button variant="outline" size="sm">
                 <Phone className="h-4 w-4 mr-2" />
                 Call Us
@@ -74,7 +74,7 @@ const Header = () => {
               <button onClick={() => scrollToSection("testimonials")} className="text-left text-foreground hover:text-primary transition-colors">
                 Testimonials
               </button>
-              <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer" className="w-full">
+              <a href="tel:+919175956905" className="w-full">
                 <Button variant="outline" className="w-full">
                   <Phone className="h-4 w-4 mr-2" />
                   Call Us
