@@ -20,14 +20,12 @@ import fullHome17 from "@/assets/services/full-home-17.jpg";
 import fullHome18 from "@/assets/services/full-home-18.jpg";
 import fullHome19 from "@/assets/services/full-home-19.jpg";
 import fullHome20 from "@/assets/services/full-home-20.jpg";
-
 const FullHomeInteriors = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="flex-1 pt-20">
-        <section className="py-16 bg-gradient-to-b from-secondary/30 to-background">
+        <section className="bg-gradient-to-b from-secondary/30 to-background py-[36px]">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Full Home Interiors</h1>
@@ -65,8 +63,6 @@ const FullHomeInteriors = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default FullHomeInteriors;
