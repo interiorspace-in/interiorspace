@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import entrance1 from "@/assets/services/entrance-foyer-1.jpg";
@@ -24,8 +22,6 @@ import entrance19 from "@/assets/services/entrance-foyer-19.jpg";
 import entrance20 from "@/assets/services/entrance-foyer-20.jpg";
 
 const EntranceFoyer = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -35,13 +31,10 @@ const EntranceFoyer = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Entrance and Foyer</h1>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-muted-foreground">
                 Make a stunning first impression with a beautifully designed entrance. Your foyer sets 
                 the tone for your entire home with elegance and warmth.
               </p>
-              <Button size="lg" onClick={() => navigate("/get-estimate")}>
-                Get Free Estimate
-              </Button>
             </div>
 
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
