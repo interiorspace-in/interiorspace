@@ -45,6 +45,9 @@ const Header = () => {
               <button onClick={() => scrollToSection("testimonials")} className="text-foreground hover:text-primary transition-colors">
                 Testimonials
               </button>
+              <button onClick={() => navigate("/blogs")} className="text-foreground hover:text-primary transition-colors">
+                Blog
+              </button>
             </nav>
 
             {/* Desktop CTA */}
@@ -81,6 +84,9 @@ const Header = () => {
                 </button>
                 <button onClick={() => scrollToSection("testimonials")} className="text-left text-foreground hover:text-primary transition-colors">
                   Testimonials
+                </button>
+                <button onClick={() => { navigate("/blogs"); setMobileMenuOpen(false); }} className="text-left text-foreground hover:text-primary transition-colors">
+                  Blog
                 </button>
                 <a href="tel:+919175956905" className="w-full">
                   <Button variant="outline" className="w-full">
