@@ -18,6 +18,7 @@ import Wardrobes from "./pages/services/Wardrobes";
 import SofaDining from "./pages/services/SofaDining";
 import EntranceFoyer from "./pages/services/EntranceFoyer";
 import OfficeSpaces from "./pages/services/OfficeSpaces";
+import ClientStories from "./pages/ClientStories";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/services/sofa-dining" element={<SofaDining />} />
             <Route path="/services/entrance-foyer" element={<EntranceFoyer />} />
             <Route path="/services/office-spaces" element={<OfficeSpaces />} />
+            <Route path="/testimonials" element={<ClientStories />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
