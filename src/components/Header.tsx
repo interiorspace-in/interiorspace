@@ -42,8 +42,8 @@ const Header = () => {
               <button onClick={() => scrollToSection("why-us")} className="text-foreground hover:text-primary transition-colors">
                 Process
               </button>
-              <button onClick={() => navigate("/testimonials")} className="text-foreground hover:text-primary transition-colors">
-                Client Stories
+              <button onClick={() => scrollToSection("testimonials")} className="text-foreground hover:text-primary transition-colors">
+                Testimonials
               </button>
               <button onClick={() => navigate("/blogs")} className="text-foreground hover:text-primary transition-colors">
                 Blog
@@ -82,8 +82,8 @@ const Header = () => {
                 <button onClick={() => scrollToSection("why-us")} className="text-left text-foreground hover:text-primary transition-colors">
                   Process
                 </button>
-                <button onClick={() => { navigate("/testimonials"); setMobileMenuOpen(false); }} className="text-left text-foreground hover:text-primary transition-colors">
-                  Client Stories
+                <button onClick={() => scrollToSection("testimonials")} className="text-left text-foreground hover:text-primary transition-colors">
+                  Testimonials
                 </button>
                 <button onClick={() => { navigate("/blogs"); setMobileMenuOpen(false); }} className="text-left text-foreground hover:text-primary transition-colors">
                   Blog
