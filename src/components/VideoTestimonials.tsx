@@ -1,75 +1,23 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { ChevronUp, ChevronDown, Volume2, VolumeX, Play, Pause } from "lucide-react";
+import { ChevronUp, ChevronDown, Volume2, VolumeX, Play, Pause, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-
-interface VideoTestimonial {
-  id: number;
-  clientName: string;
-  projectType: string;
-  testimonialText: string;
-  videoUrl: string;
-  posterUrl?: string;
-}
-
-// Sample data - replace videoUrl with actual video URLs
-const testimonials: VideoTestimonial[] = [
-  {
-    id: 1,
-    clientName: "Priya Sharma",
-    projectType: "3BHK Apartment",
-    testimonialText: "InteriorSpace transformed our home beyond imagination. The attention to detail was remarkable!",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    posterUrl: undefined,
-  },
-  {
-    id: 2,
-    clientName: "Rahul Mehta",
-    projectType: "Modern Office",
-    testimonialText: "Professional team, on-time delivery, and stunning results. Highly recommend their services!",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    posterUrl: undefined,
-  },
-  {
-    id: 3,
-    clientName: "Anita Desai",
-    projectType: "2BHK Villa",
-    testimonialText: "The modular kitchen they designed is both beautiful and functional. Best decision ever!",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    posterUrl: undefined,
-  },
-  {
-    id: 4,
-    clientName: "Vikram Singh",
-    projectType: "4BHK Penthouse",
-    testimonialText: "Exceptional craftsmanship and innovative designs. Our penthouse looks absolutely stunning!",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    posterUrl: undefined,
-  },
-  {
-    id: 5,
-    clientName: "Meera Patel",
-    projectType: "Boutique Store",
-    testimonialText: "They understood our brand vision perfectly. The store design attracts so many customers now!",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-    posterUrl: undefined,
-  },
-];
+import { useVideoTestimonials, getYouTubeEmbedUrl, getYouTubeThumbnail } from "@/hooks/useVideoTestimonials";
 
 interface VideoTestimonialsProps {
   isFullPage?: boolean;
 }
 
 const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
+  const { data: testimonials, isLoading, error } = useVideoTestimonials();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set([0]));
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const navigate = useNavigate();
 
   const scrollToIndex = useCallback((index: number) => {
-    if (index < 0 || index >= testimonials.length) return;
+    if (!testimonials || index < 0 || index >= testimonials.length) return;
     
     const container = containerRef.current;
     if (!container) return;
@@ -80,11 +28,11 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
       behavior: "smooth",
     });
     setActiveIndex(index);
-  }, []);
+  }, [testimonials]);
 
   const handleScroll = useCallback(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !testimonials) return;
 
     const scrollPosition = container.scrollTop;
     const videoHeight = container.clientHeight;
@@ -93,21 +41,24 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
     if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
       setActiveIndex(newIndex);
     }
-  }, [activeIndex]);
+  }, [activeIndex, testimonials]);
 
-  // Handle video play/pause based on active index
+  // Lazy load videos as user scrolls
   useEffect(() => {
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === activeIndex && isPlaying) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-        video.muted = isMuted;
+    if (!testimonials) return;
+    
+    const toLoad = new Set(loadedVideos);
+    // Load current, previous, and next videos
+    [activeIndex - 1, activeIndex, activeIndex + 1].forEach((idx) => {
+      if (idx >= 0 && idx < testimonials.length) {
+        toLoad.add(idx);
       }
     });
-  }, [activeIndex, isMuted, isPlaying]);
+    
+    if (toLoad.size !== loadedVideos.size) {
+      setLoadedVideos(toLoad);
+    }
+  }, [activeIndex, testimonials, loadedVideos.size]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -126,9 +77,28 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
   }, [activeIndex, scrollToIndex]);
 
   const toggleMute = () => setIsMuted(!isMuted);
-  const togglePlay = () => setIsPlaying(!isPlaying);
 
   const containerHeight = isFullPage ? "h-[calc(100vh-4rem)]" : "h-[600px] md:h-[700px]";
+
+  if (isLoading) {
+    return (
+      <section className={`relative bg-foreground ${isFullPage ? "pt-16" : "py-16 md:py-24"}`}>
+        <div className="flex items-center justify-center h-[400px]">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !testimonials || testimonials.length === 0) {
+    return (
+      <section className={`relative bg-foreground ${isFullPage ? "pt-16" : "py-16 md:py-24"}`}>
+        <div className="flex items-center justify-center h-[400px]">
+          <p className="text-background/70">No testimonials available yet.</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={`relative bg-foreground ${isFullPage ? "pt-16" : "py-16 md:py-24"}`}>
@@ -169,51 +139,50 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
                 key={testimonial.id}
                 className={`${containerHeight} snap-start snap-always relative flex-shrink-0`}
               >
-                {/* Video */}
-                <video
-                  ref={(el) => (videoRefs.current[index] = el)}
-                  src={testimonial.videoUrl}
-                  poster={testimonial.posterUrl}
-                  loop
-                  playsInline
-                  muted={isMuted}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                {/* YouTube Embed or Thumbnail */}
+                {loadedVideos.has(index) ? (
+                  <iframe
+                    src={`${getYouTubeEmbedUrl(testimonial.youtube_url)}&mute=${isMuted ? 1 : 0}`}
+                    title={`${testimonial.client_name} testimonial`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                  />
+                ) : (
+                  <img
+                    src={getYouTubeThumbnail(testimonial.youtube_url)}
+                    alt={testimonial.client_name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground/30" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground/30 pointer-events-none" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 pb-20">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 pb-20 pointer-events-none">
                   {/* Project Type Badge */}
                   <div className="mb-3">
                     <span className="inline-block px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
-                      {testimonial.projectType}
+                      {testimonial.project_type}
                     </span>
                   </div>
 
                   {/* Client Name */}
                   <h3 className="text-xl md:text-2xl font-bold text-background mb-2">
-                    {testimonial.clientName}
+                    {testimonial.client_name}
                   </h3>
 
                   {/* Testimonial Text */}
                   <p className="text-background/90 text-sm md:text-base leading-relaxed line-clamp-3">
-                    "{testimonial.testimonialText}"
+                    "{testimonial.testimonial_text}"
                   </p>
                 </div>
 
                 {/* Side Controls */}
-                <div className="absolute right-4 bottom-24 flex flex-col gap-4">
-                  {/* Play/Pause */}
-                  <button
-                    onClick={togglePlay}
-                    className="w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-background hover:bg-background/30 transition-colors"
-                    aria-label={isPlaying ? "Pause" : "Play"}
-                  >
-                    {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                  </button>
-
+                <div className="absolute right-4 bottom-24 flex flex-col gap-4 z-30">
                   {/* Mute/Unmute */}
                   <button
                     onClick={toggleMute}
@@ -225,7 +194,7 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
                 </div>
 
                 {/* Progress Dots */}
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-30">
                   {testimonials.map((_, dotIndex) => (
                     <button
                       key={dotIndex}
