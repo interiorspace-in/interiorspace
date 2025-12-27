@@ -96,7 +96,9 @@ export type Database = {
           display_order: number
           id: string
           is_enabled: boolean
+          location: string | null
           project_type: string
+          star_rating: number | null
           testimonial_text: string
           updated_at: string
           youtube_url: string
@@ -107,7 +109,9 @@ export type Database = {
           display_order?: number
           id?: string
           is_enabled?: boolean
+          location?: string | null
           project_type: string
+          star_rating?: number | null
           testimonial_text: string
           updated_at?: string
           youtube_url: string
@@ -118,7 +122,9 @@ export type Database = {
           display_order?: number
           id?: string
           is_enabled?: boolean
+          location?: string | null
           project_type?: string
+          star_rating?: number | null
           testimonial_text?: string
           updated_at?: string
           youtube_url?: string
