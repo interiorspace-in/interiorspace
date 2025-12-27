@@ -1,18 +1,24 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { ChevronUp, ChevronDown, Volume2, VolumeX, Play, Pause, Loader2 } from "lucide-react";
+import { ChevronUp, ChevronDown, Volume2, VolumeX, Loader2, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useVideoTestimonials, getYouTubeEmbedUrl, getYouTubeThumbnail } from "@/hooks/useVideoTestimonials";
+import TestimonialCTA from "@/components/TestimonialCTA";
+import TrustBadges from "@/components/TrustBadges";
+import StarRating from "@/components/StarRating";
 
 interface VideoTestimonialsProps {
   isFullPage?: boolean;
+  showTrustBadges?: boolean;
 }
 
-const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
+const VideoTestimonials = ({ isFullPage = false, showTrustBadges = true }: VideoTestimonialsProps) => {
   const { data: testimonials, isLoading, error } = useVideoTestimonials();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set([0]));
+  const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set());
+  const [activeVideoLoaded, setActiveVideoLoaded] = useState(false);
+  const [thumbnailError, setThumbnailError] = useState<Set<number>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -28,6 +34,7 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
       behavior: "smooth",
     });
     setActiveIndex(index);
+    setActiveVideoLoaded(false);
   }, [testimonials]);
 
   const handleScroll = useCallback(() => {
@@ -40,25 +47,33 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
     
     if (newIndex !== activeIndex && newIndex >= 0 && newIndex < testimonials.length) {
       setActiveIndex(newIndex);
+      setActiveVideoLoaded(false);
     }
   }, [activeIndex, testimonials]);
 
-  // Lazy load videos as user scrolls
+  // Load only the active video iframe
   useEffect(() => {
     if (!testimonials) return;
     
-    const toLoad = new Set(loadedVideos);
-    // Load current, previous, and next videos
-    [activeIndex - 1, activeIndex, activeIndex + 1].forEach((idx) => {
-      if (idx >= 0 && idx < testimonials.length) {
-        toLoad.add(idx);
-      }
-    });
+    const toLoad = new Set<number>();
+    toLoad.add(activeIndex);
     
-    if (toLoad.size !== loadedVideos.size) {
+    if (JSON.stringify([...toLoad]) !== JSON.stringify([...loadedVideos])) {
       setLoadedVideos(toLoad);
     }
-  }, [activeIndex, testimonials, loadedVideos.size]);
+  }, [activeIndex, testimonials]);
+
+  // Preload next and previous thumbnails
+  useEffect(() => {
+    if (!testimonials) return;
+    
+    [activeIndex - 1, activeIndex + 1].forEach((idx) => {
+      if (idx >= 0 && idx < testimonials.length) {
+        const img = new Image();
+        img.src = getYouTubeThumbnail(testimonials[idx].youtube_url);
+      }
+    });
+  }, [activeIndex, testimonials]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -77,6 +92,10 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
   }, [activeIndex, scrollToIndex]);
 
   const toggleMute = () => setIsMuted(!isMuted);
+
+  const handleThumbnailError = (index: number) => {
+    setThumbnailError(prev => new Set(prev).add(index));
+  };
 
   const containerHeight = isFullPage ? "h-[calc(100vh-4rem)]" : "h-[600px] md:h-[700px]";
 
@@ -139,22 +158,30 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
                 key={testimonial.id}
                 className={`${containerHeight} snap-start snap-always relative flex-shrink-0`}
               >
-                {/* YouTube Embed or Thumbnail */}
-                {loadedVideos.has(index) ? (
+                {/* Fallback Thumbnail (always render for stability) */}
+                <img
+                  src={thumbnailError.has(index) 
+                    ? `https://img.youtube.com/vi/${testimonial.youtube_url.split('/').pop()?.split('?')[0]}/hqdefault.jpg`
+                    : getYouTubeThumbnail(testimonial.youtube_url)
+                  }
+                  alt={`${testimonial.client_name} - ${testimonial.project_type} testimonial`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                    loadedVideos.has(index) && activeVideoLoaded ? 'opacity-0' : 'opacity-100'
+                  }`}
+                  onError={() => handleThumbnailError(index)}
+                  loading={Math.abs(index - activeIndex) <= 1 ? "eager" : "lazy"}
+                />
+
+                {/* YouTube Embed (only for active video) */}
+                {loadedVideos.has(index) && (
                   <iframe
                     src={`${getYouTubeEmbedUrl(testimonial.youtube_url)}&mute=${isMuted ? 1 : 0}`}
-                    title={`${testimonial.client_name} testimonial`}
+                    title={`${testimonial.client_name} - ${testimonial.project_type} interior design testimonial`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 w-full h-full"
                     style={{ border: 0 }}
-                    loading="lazy"
-                  />
-                ) : (
-                  <img
-                    src={getYouTubeThumbnail(testimonial.youtube_url)}
-                    alt={testimonial.client_name}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    onLoad={() => index === activeIndex && setActiveVideoLoaded(true)}
                   />
                 )}
 
@@ -162,27 +189,43 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground/30 pointer-events-none" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 pb-20 pointer-events-none">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 pb-24">
                   {/* Project Type Badge */}
-                  <div className="mb-3">
+                  <div className="mb-2 flex items-center gap-2 flex-wrap pointer-events-none">
                     <span className="inline-block px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full">
                       {testimonial.project_type}
                     </span>
+                    {testimonial.location && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-background/20 backdrop-blur-sm text-background text-xs rounded-full">
+                        <MapPin className="w-3 h-3" />
+                        {testimonial.location}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Client Name */}
-                  <h3 className="text-xl md:text-2xl font-bold text-background mb-2">
-                    {testimonial.client_name}
-                  </h3>
+                  {/* Client Name & Rating */}
+                  <div className="pointer-events-none">
+                    <h3 className="text-xl md:text-2xl font-bold text-background mb-1">
+                      {testimonial.client_name}
+                    </h3>
+                    <StarRating 
+                      rating={testimonial.star_rating || 5} 
+                      size="sm" 
+                      className="mb-2" 
+                    />
+                  </div>
 
                   {/* Testimonial Text */}
-                  <p className="text-background/90 text-sm md:text-base leading-relaxed line-clamp-3">
+                  <p className="text-background/90 text-sm md:text-base leading-relaxed line-clamp-2 mb-4 pointer-events-none">
                     "{testimonial.testimonial_text}"
                   </p>
+
+                  {/* CTA Buttons */}
+                  <TestimonialCTA variant="overlay" projectType={testimonial.project_type} />
                 </div>
 
                 {/* Side Controls */}
-                <div className="absolute right-4 bottom-24 flex flex-col gap-4 z-30">
+                <div className="absolute right-4 bottom-28 flex flex-col gap-4 z-30">
                   {/* Mute/Unmute */}
                   <button
                     onClick={toggleMute}
@@ -243,6 +286,13 @@ const VideoTestimonials = ({ isFullPage = false }: VideoTestimonialsProps) => {
           {activeIndex + 1} / {testimonials.length}
         </span>
       </div>
+
+      {/* Trust Badges */}
+      {showTrustBadges && (
+        <div className="mt-10">
+          <TrustBadges variant="dark" />
+        </div>
+      )}
     </section>
   );
 };

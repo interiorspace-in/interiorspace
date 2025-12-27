@@ -9,9 +9,20 @@ export interface VideoTestimonial {
   youtube_url: string;
   is_enabled: boolean;
   display_order: number;
+  location: string | null;
+  star_rating: number | null;
   created_at: string;
   updated_at: string;
 }
+
+export const PROJECT_TYPES = [
+  "1BHK",
+  "2BHK",
+  "3BHK",
+  "Villa",
+  "Office",
+  "Commercial"
+] as const;
 
 // Extract YouTube video ID from various URL formats
 export const getYouTubeVideoId = (url: string): string | null => {
@@ -39,6 +50,15 @@ export const getYouTubeThumbnail = (url: string): string => {
   const videoId = getYouTubeVideoId(url);
   if (!videoId) return "";
   return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+};
+
+// Generate SEO-friendly slug
+export const generateTestimonialSlug = (clientName: string, projectType: string): string => {
+  const slug = `${clientName}-${projectType}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+  return slug;
 };
 
 export const useVideoTestimonials = () => {
@@ -69,5 +89,29 @@ export const useAllVideoTestimonials = () => {
       if (error) throw error;
       return data as VideoTestimonial[];
     },
+  });
+};
+
+export const useTestimonialBySlug = (slug: string) => {
+  return useQuery({
+    queryKey: ["testimonial-by-slug", slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("video_testimonials")
+        .select("*")
+        .eq("is_enabled", true)
+        .order("display_order", { ascending: true });
+
+      if (error) throw error;
+      
+      // Find testimonial matching the slug
+      const testimonials = data as VideoTestimonial[];
+      const testimonial = testimonials.find(t => 
+        generateTestimonialSlug(t.client_name, t.project_type) === slug
+      );
+      
+      return testimonial || null;
+    },
+    enabled: !!slug,
   });
 };

@@ -38,6 +38,7 @@ const App = () => (
             <Route path="/blogs/:slug" element={<BlogDetail />} />
             <Route path="/admin/blogs" element={<AdminBlogs />} />
             <Route path="/testimonials" element={<VideoTestimonialsPage />} />
+            <Route path="/testimonials/:slug" element={<VideoTestimonialsPage />} />
             <Route path="/admin/auth" element={<AdminAuth />} />
             <Route path="/admin/testimonials" element={<AdminTestimonials />} />
             <Route path="/services/full-home-interiors" element={<FullHomeInteriors />} />
