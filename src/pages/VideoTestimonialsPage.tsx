@@ -6,27 +6,24 @@ import VideoTestimonials from "@/components/VideoTestimonials";
 import MobileStickyTestimonialCTA from "@/components/MobileStickyTestimonialCTA";
 import TestimonialSchemaMarkup from "@/components/TestimonialSchemaMarkup";
 import { useVideoTestimonials, useTestimonialBySlug } from "@/hooks/useVideoTestimonials";
-
 const VideoTestimonialsPage = () => {
-  const { slug } = useParams<{ slug?: string }>();
-  const { data: testimonials } = useVideoTestimonials();
-  const { data: singleTestimonial } = useTestimonialBySlug(slug || "");
+  const {
+    slug
+  } = useParams<{
+    slug?: string;
+  }>();
+  const {
+    data: testimonials
+  } = useVideoTestimonials();
+  const {
+    data: singleTestimonial
+  } = useTestimonialBySlug(slug || "");
 
   // Dynamic meta content for SEO
-  const pageTitle = singleTestimonial
-    ? `${singleTestimonial.project_type} Interior Design Review – ${singleTestimonial.client_name} | Interior Space`
-    : "Client Stories & Video Testimonials | Interior Space";
-  
-  const pageDescription = singleTestimonial
-    ? `${singleTestimonial.testimonial_text} - Watch ${singleTestimonial.client_name}'s ${singleTestimonial.project_type} interior design transformation.`
-    : "Watch real video testimonials from our satisfied clients. Discover their transformation journey with Interior Space's premium interior design services.";
-
-  const pageKeywords = singleTestimonial
-    ? `${singleTestimonial.project_type} interior design, ${singleTestimonial.client_name} review, interior design testimonial, ${singleTestimonial.location || ""} interior designer`
-    : "interior design testimonials, client reviews, video testimonials, home renovation reviews, interior transformation stories";
-
-  return (
-    <>
+  const pageTitle = singleTestimonial ? `${singleTestimonial.project_type} Interior Design Review – ${singleTestimonial.client_name} | Interior Space` : "Client Stories & Video Testimonials | Interior Space";
+  const pageDescription = singleTestimonial ? `${singleTestimonial.testimonial_text} - Watch ${singleTestimonial.client_name}'s ${singleTestimonial.project_type} interior design transformation.` : "Watch real video testimonials from our satisfied clients. Discover their transformation journey with Interior Space's premium interior design services.";
+  const pageKeywords = singleTestimonial ? `${singleTestimonial.project_type} interior design, ${singleTestimonial.client_name} review, interior design testimonial, ${singleTestimonial.location || ""} interior designer` : "interior design testimonials, client reviews, video testimonials, home renovation reviews, interior transformation stories";
+  return <>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -41,12 +38,7 @@ const VideoTestimonialsPage = () => {
       </Helmet>
 
       {/* Schema Markup for SEO */}
-      {testimonials && (
-        <TestimonialSchemaMarkup 
-          testimonials={testimonials} 
-          singleTestimonial={singleTestimonial}
-        />
-      )}
+      {testimonials && <TestimonialSchemaMarkup testimonials={testimonials} singleTestimonial={singleTestimonial} />}
 
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -56,17 +48,15 @@ const VideoTestimonialsPage = () => {
           <section className="pt-24 pb-8 bg-foreground">
             <div className="container mx-auto px-4 text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-background mb-4">
-                Client <span className="text-primary">Stories</span>
+                Our <span className="text-primary">Portfolio</span>
               </h1>
               <p className="text-background/70 max-w-2xl mx-auto text-lg">
-                Real stories from real clients. Watch how we transformed their spaces and exceeded their expectations.
+                Discover what we have delivered to our clients through impactful design transformations.
               </p>
-              {testimonials && testimonials.length > 0 && (
-                <div className="mt-4 flex items-center justify-center gap-2 text-background/60 text-sm">
+              {testimonials && testimonials.length > 0 && <div className="mt-4 flex items-center justify-center gap-2 text-background/60 text-sm">
                   <span className="font-semibold text-primary">{testimonials.length}+</span>
                   <span>Happy Clients Sharing Their Experience</span>
-                </div>
-              )}
+                </div>}
             </div>
           </section>
 
@@ -79,8 +69,6 @@ const VideoTestimonialsPage = () => {
         {/* Mobile Sticky CTA */}
         <MobileStickyTestimonialCTA />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default VideoTestimonialsPage;
