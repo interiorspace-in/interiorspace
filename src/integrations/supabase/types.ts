@@ -131,6 +131,56 @@ export type Database = {
         }
         Relationships: []
       }
+      whatsapp_leads: {
+        Row: {
+          clicked_at: string
+          client_name: string
+          created_at: string
+          device_type: string
+          id: string
+          notes: string | null
+          page_source: string
+          project_type: string
+          status: Database["public"]["Enums"]["lead_status"]
+          testimonial_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          clicked_at?: string
+          client_name: string
+          created_at?: string
+          device_type: string
+          id?: string
+          notes?: string | null
+          page_source: string
+          project_type: string
+          status?: Database["public"]["Enums"]["lead_status"]
+          testimonial_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          clicked_at?: string
+          client_name?: string
+          created_at?: string
+          device_type?: string
+          id?: string
+          notes?: string | null
+          page_source?: string
+          project_type?: string
+          status?: Database["public"]["Enums"]["lead_status"]
+          testimonial_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "whatsapp_leads_testimonial_id_fkey"
+            columns: ["testimonial_id"]
+            isOneToOne: false
+            referencedRelation: "video_testimonials"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -146,6 +196,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      lead_status: "new" | "contacted" | "converted"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -274,6 +325,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      lead_status: ["new", "contacted", "converted"],
     },
   },
 } as const

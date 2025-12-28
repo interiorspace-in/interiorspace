@@ -221,7 +221,13 @@ const VideoTestimonials = ({ isFullPage = false, showTrustBadges = true }: Video
                   </p>
 
                   {/* CTA Buttons */}
-                  <TestimonialCTA variant="overlay" projectType={testimonial.project_type} />
+                  <TestimonialCTA 
+                    variant="overlay" 
+                    projectType={testimonial.project_type}
+                    clientName={testimonial.client_name}
+                    testimonialId={testimonial.id}
+                    pageSource={isFullPage ? "Testimonials Page" : "Home Page"}
+                  />
                 </div>
 
                 {/* Side Controls */}

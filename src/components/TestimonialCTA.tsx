@@ -2,21 +2,44 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Calendar } from "lucide-react";
 import EstimateModal from "@/components/EstimateModal";
+import { 
+  trackWhatsAppClick, 
+  generateWhatsAppMessage, 
+  getWhatsAppUrl 
+} from "@/hooks/useWhatsAppLeads";
 
 interface TestimonialCTAProps {
   variant?: "overlay" | "inline";
   projectType?: string;
+  clientName?: string;
+  testimonialId?: string;
+  pageSource?: string;
 }
 
-const TestimonialCTA = ({ variant = "overlay", projectType }: TestimonialCTAProps) => {
+const TestimonialCTA = ({ 
+  variant = "overlay", 
+  projectType = "Interior Design",
+  clientName = "Our Client",
+  testimonialId,
+  pageSource = "Home"
+}: TestimonialCTAProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleWhatsAppClick = () => {
-    const message = projectType 
-      ? `Hi! I saw your ${projectType} testimonial and I'm interested in a similar design for my home.`
-      : "Hi! I saw your client testimonials and I'm interested in interior design services.";
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/919999999999?text=${encodedMessage}`, "_blank");
+  const handleWhatsAppClick = async () => {
+    // Generate message with client name and project type
+    const message = generateWhatsAppMessage(clientName, projectType);
+    const whatsappUrl = getWhatsAppUrl(message);
+
+    // Track lead asynchronously (non-blocking)
+    trackWhatsAppClick({
+      testimonial_id: testimonialId,
+      client_name: clientName,
+      project_type: projectType,
+      page_source: pageSource,
+    });
+
+    // Open WhatsApp immediately (fail-safe: always opens even if tracking fails)
+    window.open(whatsappUrl, "_blank");
   };
 
   if (variant === "overlay") {
@@ -38,7 +61,7 @@ const TestimonialCTA = ({ variant = "overlay", projectType }: TestimonialCTAProp
             onClick={handleWhatsAppClick}
           >
             <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
-            View Similar Project
+            Chat on WhatsApp
           </Button>
         </div>
         <EstimateModal open={isModalOpen} onOpenChange={setIsModalOpen} />
