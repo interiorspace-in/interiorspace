@@ -9,7 +9,7 @@ import {
 } from "@/hooks/useWhatsAppLeads";
 
 interface TestimonialCTAProps {
-  variant?: "overlay" | "inline";
+  variant?: "overlay" | "inline" | "card";
   projectType?: string;
   clientName?: string;
   testimonialId?: string;
@@ -62,6 +62,33 @@ const TestimonialCTA = ({
           >
             <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
             Chat on WhatsApp
+          </Button>
+        </div>
+        <EstimateModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+      </>
+    );
+  }
+
+  if (variant === "card") {
+    return (
+      <>
+        <div className="flex gap-2 w-full">
+          <Button
+            size="sm"
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-medium"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Calendar className="w-3.5 h-3.5 mr-1.5" />
+            Get Consultation
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="flex-1 border-background/30 text-background hover:bg-background/10 text-xs font-medium"
+            onClick={handleWhatsAppClick}
+          >
+            <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            WhatsApp
           </Button>
         </div>
         <EstimateModal open={isModalOpen} onOpenChange={setIsModalOpen} />
