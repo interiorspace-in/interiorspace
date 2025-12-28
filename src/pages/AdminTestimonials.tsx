@@ -15,7 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, LogOut, ArrowUp, ArrowDown, Loader2, Home, Eye, MapPin, Star, Calendar, Play } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, ArrowUp, ArrowDown, Loader2, Home, Eye, MapPin, Star, Calendar, Play, MessageCircle } from "lucide-react";
 import StarRating from "@/components/StarRating";
 import { format } from "date-fns";
 
@@ -249,6 +249,10 @@ const AdminTestimonials = () => {
             <p className="text-sm text-muted-foreground">Manage client story videos</p>
           </div>
           <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={() => navigate("/admin/whatsapp-leads")}>
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Leads
+            </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate("/")}>
               <Home className="w-4 h-4 mr-2" />
               Home
