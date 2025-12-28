@@ -32,8 +32,8 @@ const Footer = () => {
               <li>Careers</li>
               <li>Disclaimer</li>
               <li>Privacy Policy</li>
-              <li>Bedrooms</li>
-              <li>Wardrobes</li>
+              
+              <li>Terms & Conditions</li>
               
             </ul>
           </div>
