@@ -59,7 +59,7 @@ const VideoTestimonials = ({
           {testimonials.map(testimonial => <div key={testimonial.id} className="flex flex-col bg-background/5 rounded-xl overflow-hidden hover:bg-background/10 transition-colors">
               {/* 16:9 Video/Thumbnail Container */}
               <div className="relative aspect-video w-full">
-                {playingId === testimonial.id ? <iframe src={`${getYouTubeEmbedUrl(testimonial.youtube_url)}&autoplay=1`} title={`${testimonial.client_name} - ${testimonial.project_type} interior design testimonial`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 w-full h-full" style={{
+                {playingId === testimonial.id ? <iframe src={`${getYouTubeEmbedUrl(testimonial.youtube_url)}&autoplay=1&mute=0`} title={`${testimonial.client_name} - ${testimonial.project_type} interior design testimonial`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className="absolute inset-0 w-full h-full" style={{
               border: 0
             }} /> : <>
                     <img src={thumbnailError.has(testimonial.id) ? `https://img.youtube.com/vi/${testimonial.youtube_url.split('/').pop()?.split('?')[0]}/hqdefault.jpg` : getYouTubeThumbnail(testimonial.youtube_url)} alt={`${testimonial.client_name} - ${testimonial.project_type} testimonial`} className="absolute inset-0 w-full h-full object-cover" onError={() => handleThumbnailError(testimonial.id)} loading="lazy" />

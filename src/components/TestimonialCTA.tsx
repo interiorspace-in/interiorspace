@@ -28,7 +28,7 @@ const TestimonialCTA = ({
   const handleWhatsAppClick = async () => {
     // Generate message with client name and project type
     const message = generateWhatsAppMessage(clientName, projectType);
-    const whatsappUrl = getWhatsAppUrl(message);
+    const whatsappUrl = getWhatsAppUrl(message, pageSource, `testimonial_${projectType.toLowerCase().replace(/\s+/g, '_')}`);
 
     // Track lead asynchronously (non-blocking)
     trackWhatsAppClick({

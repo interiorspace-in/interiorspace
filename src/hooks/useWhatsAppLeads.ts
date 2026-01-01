@@ -22,7 +22,7 @@ export interface CreateLeadParams {
   page_source: string;
 }
 
-export const WHATSAPP_NUMBER = "919999999999"; // Replace with actual number
+export const WHATSAPP_NUMBER = "919175956905";
 
 export const getDeviceType = (): string => {
   const userAgent = navigator.userAgent.toLowerCase();
@@ -42,9 +42,21 @@ I'm interested in a similar interior design project.
 Please connect with me.`;
 };
 
-export const getWhatsAppUrl = (message: string): string => {
-  const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+// Generate WhatsApp URL with pre-filled message and UTM tracking
+export const getWhatsAppUrl = (message: string, source?: string, campaign?: string): string => {
+  const phoneNumber = WHATSAPP_NUMBER;
+  
+  // Add UTM parameters for tracking
+  const utmSource = source || "website";
+  const utmMedium = "whatsapp";
+  const utmCampaign = campaign || "testimonial_cta";
+  const timestamp = Date.now();
+  
+  // Append tracking info to message
+  const trackingInfo = `\n\n[Source: ${utmSource} | Campaign: ${utmCampaign} | Ref: ${timestamp}]`;
+  const fullMessage = encodeURIComponent(message + trackingInfo);
+  
+  return `https://wa.me/${phoneNumber}?text=${fullMessage}`;
 };
 
 export const trackWhatsAppClick = async (params: CreateLeadParams): Promise<void> => {

@@ -13,7 +13,7 @@ const MobileStickyTestimonialCTA = () => {
 
   const handleWhatsAppClick = async () => {
     const message = generateWhatsAppMessage("Our Clients", "Interior Design");
-    const whatsappUrl = getWhatsAppUrl(message);
+    const whatsappUrl = getWhatsAppUrl(message, "mobile_sticky_cta", "general_inquiry");
 
     // Track lead asynchronously
     trackWhatsAppClick({
