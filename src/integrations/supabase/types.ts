@@ -68,6 +68,51 @@ export type Database = {
         }
         Relationships: []
       }
+      estimate_leads: {
+        Row: {
+          budget: string
+          created_at: string
+          email: string
+          floor_plan: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string
+          possession: string
+          purpose: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          budget: string
+          created_at?: string
+          email: string
+          floor_plan: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone: string
+          possession: string
+          purpose: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          budget?: string
+          created_at?: string
+          email?: string
+          floor_plan?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+          possession?: string
+          purpose?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

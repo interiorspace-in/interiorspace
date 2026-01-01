@@ -4,8 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2, Check } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+const floorPlans = ["1 BHK", "2 BHK", "3 BHK", "3+ BHK"];
+
+const purposes = ["Move In", "Rent Out", "Renovate"];
 
 const budgetRanges = [
   "Up to 1.5 Lakhs",
@@ -38,6 +43,8 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
     name: "",
     phone: "",
     email: "",
+    floorPlan: "",
+    purpose: "",
     budget: "",
     possession: ""
   });
@@ -52,6 +59,8 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
       name: "",
       phone: "",
       email: "",
+      floorPlan: "",
+      purpose: "",
       budget: "",
       possession: ""
     });
@@ -119,6 +128,18 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
     setStep(2);
   };
 
+  const handleStep2Submit = () => {
+    if (!formData.floorPlan) {
+      toast.error("Please select your floor plan");
+      return;
+    }
+    if (!formData.purpose) {
+      toast.error("Please select the purpose");
+      return;
+    }
+    setStep(3);
+  };
+
   const handleFinalSubmit = async () => {
     if (!formData.budget) {
       toast.error("Please select a budget range");
@@ -132,32 +153,45 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/leads/estimate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
+      const { error } = await supabase
+        .from("estimate_leads")
+        .insert({
+          name: formData.name.trim(),
           phone: formData.phone,
-          email: formData.email,
+          email: formData.email.trim().toLowerCase(),
+          floor_plan: formData.floorPlan,
+          purpose: formData.purpose,
           budget: formData.budget,
-          possession: formData.possession
-        })
-      });
+          possession: formData.possession,
+          status: "new"
+        });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success(data.message || "Estimate request submitted successfully!");
-        handleClose();
-      } else {
-        toast.error(data.message || "Failed to submit estimate request");
+      if (error) {
+        console.error("Submission error:", error);
+        toast.error("Failed to submit. Please try again.");
+        return;
       }
+
+      toast.success("Estimate request submitted successfully! We'll contact you soon.");
+      handleClose();
     } catch (error) {
-      toast.error("Failed to connect to server. Please try again.");
+      console.error("Submission error:", error);
+      toast.error("Failed to submit. Please try again.");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const getStepTitle = () => {
+    switch (step) {
+      case 1:
+        return "Contact Details";
+      case 2:
+        return "Property Details";
+      case 3:
+        return "Budget & Timeline";
+      default:
+        return "";
     }
   };
 
@@ -166,10 +200,26 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
-            {step === 1 ? "Contact Details" : "Estimate Details"}
+            {getStepTitle()}
           </DialogTitle>
-          <p className="text-center text-muted-foreground text-sm">
-            Step {step} of 2
+          <div className="flex justify-center gap-2 pt-2">
+            {[1, 2, 3].map((s) => (
+              <div
+                key={s}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+                  s < step
+                    ? "bg-primary text-primary-foreground"
+                    : s === step
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {s < step ? <Check className="w-4 h-4" /> : s}
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-muted-foreground text-sm pt-1">
+            Step {step} of 3
           </p>
         </DialogHeader>
 
@@ -277,6 +327,64 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
         {step === 2 && (
           <div className="space-y-4 pt-4">
             <div className="space-y-2">
+              <Label htmlFor="floorPlan">Floor Plan *</Label>
+              <Select
+                value={formData.floorPlan}
+                onValueChange={(value) => setFormData({ ...formData, floorPlan: value })}
+              >
+                <SelectTrigger id="floorPlan">
+                  <SelectValue placeholder="Select floor plan" />
+                </SelectTrigger>
+                <SelectContent className="bg-background">
+                  {floorPlans.map((plan) => (
+                    <SelectItem key={plan} value={plan}>
+                      {plan}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="purpose">Purpose *</Label>
+              <Select
+                value={formData.purpose}
+                onValueChange={(value) => setFormData({ ...formData, purpose: value })}
+              >
+                <SelectTrigger id="purpose">
+                  <SelectValue placeholder="Select purpose" />
+                </SelectTrigger>
+                <SelectContent className="bg-background">
+                  {purposes.map((p) => (
+                    <SelectItem key={p} value={p}>
+                      {p}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => setStep(1)}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handleStep2Submit}
+              >
+                Next <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="space-y-4 pt-4">
+            <div className="space-y-2">
               <Label htmlFor="budget">Budget Range *</Label>
               <Select
                 value={formData.budget}
@@ -285,7 +393,7 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
                 <SelectTrigger id="budget">
                   <SelectValue placeholder="Select budget range" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background">
                   {budgetRanges.map((range) => (
                     <SelectItem key={range} value={range}>
                       {range}
@@ -304,7 +412,7 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
                 <SelectTrigger id="possession">
                   <SelectValue placeholder="Select possession status" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background">
                   {possessionStatus.map((status) => (
                     <SelectItem key={status} value={status}>
                       {status}
@@ -318,7 +426,7 @@ const EstimateModal = ({ open, onOpenChange }: EstimateModalProps) => {
               <Button
                 variant="outline"
                 className="flex-1"
-                onClick={() => setStep(1)}
+                onClick={() => setStep(2)}
                 disabled={isSubmitting}
               >
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
