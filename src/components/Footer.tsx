@@ -30,18 +30,25 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
+          {/* Links */}
           <div>
             <h4 className="font-semibold mb-4">Links</h4>
             <ul className="space-y-2 text-background/80">
-              <li>Careers</li>
-              <li>Disclaimer</li>
-              <li>Privacy Policy
-
-            </li>
-              
-              <li>Terms & Conditions</li>
-              
+              <li>
+                <a href="/disclaimer" className="hover:text-primary transition-colors">
+                  Disclaimer
+                </a>
+              </li>
+              <li>
+                <a href="/privacy-policy" className="hover:text-primary transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms-and-conditions" className="hover:text-primary transition-colors">
+                  Terms & Conditions
+                </a>
+              </li>
             </ul>
           </div>
 
