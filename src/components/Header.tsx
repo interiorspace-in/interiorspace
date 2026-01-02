@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import EstimateModal from "@/components/EstimateModal";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,9 +30,12 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             <button 
               onClick={() => navigate("/")} 
-              className="text-2xl font-bold text-foreground hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              Interior <span className="text-primary">Space</span>
+              <img src={logo} alt="Interior Space Logo" className="h-10 w-auto md:h-12" />
+              <span className="text-xl md:text-2xl font-bold text-foreground">
+                Interior <span className="text-primary">Space</span>
+              </span>
             </button>
 
             {/* Desktop Navigation */}

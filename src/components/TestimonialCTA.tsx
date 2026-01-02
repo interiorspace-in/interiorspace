@@ -5,7 +5,8 @@ import EstimateModal from "@/components/EstimateModal";
 import { 
   trackWhatsAppClick, 
   generateWhatsAppMessage, 
-  getWhatsAppUrl 
+  getWhatsAppUrl,
+  getBookConsultationWhatsAppUrl
 } from "@/hooks/useWhatsAppLeads";
 
 interface TestimonialCTAProps {

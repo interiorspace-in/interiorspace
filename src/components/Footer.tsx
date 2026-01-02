@@ -1,4 +1,6 @@
 import { MapPin, Phone, Facebook, Instagram, MessageCircle } from "lucide-react";
+import logo from "@/assets/logo.png";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-foreground text-background py-12">
@@ -6,9 +8,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
-              Interior <span className="text-primary">Space</span>
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img src={logo} alt="Interior Space Logo" className="h-10 w-auto brightness-0 invert" />
+              <span className="text-2xl font-bold">
+                Interior <span className="text-primary">Space</span>
+              </span>
+            </div>
             <p className="text-background/80 mb-4">
               Transforming homes in Pune and Pimpri Chinchwad with premium interior design solutions.
             </p>

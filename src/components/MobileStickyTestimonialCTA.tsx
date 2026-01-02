@@ -4,21 +4,19 @@ import { MessageCircle, Phone } from "lucide-react";
 import EstimateModal from "@/components/EstimateModal";
 import { 
   trackWhatsAppClick, 
-  generateWhatsAppMessage, 
-  getWhatsAppUrl 
+  getBookConsultationWhatsAppUrl 
 } from "@/hooks/useWhatsAppLeads";
 
 const MobileStickyTestimonialCTA = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWhatsAppClick = async () => {
-    const message = generateWhatsAppMessage("Our Clients", "Interior Design");
-    const whatsappUrl = getWhatsAppUrl(message, "mobile_sticky_cta", "general_inquiry");
+    const whatsappUrl = getBookConsultationWhatsAppUrl();
 
     // Track lead asynchronously
     trackWhatsAppClick({
-      client_name: "General Inquiry",
-      project_type: "General",
+      client_name: "Book Consultation",
+      project_type: "Consultation",
       page_source: "Mobile Sticky CTA",
     });
 
@@ -42,7 +40,7 @@ const MobileStickyTestimonialCTA = () => {
             onClick={handleWhatsAppClick}
           >
             <MessageCircle className="w-5 h-5 mr-2" />
-            WhatsApp
+            Book Consultation
           </Button>
         </div>
       </div>
