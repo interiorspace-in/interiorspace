@@ -73,12 +73,7 @@ const Contact = () => {
           </div>
 
           {/* Book Consultation CTA */}
-          <div className="mt-12 text-center">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8" onClick={handleWhatsAppClick}>
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Book Consultation 
-            </Button>
-          </div>
+          
 
           {/* CTA Section */}
           
