@@ -42,21 +42,32 @@ I'm interested in a similar interior design project.
 Please connect with me.`;
 };
 
+// Pre-filled message for Book Consultation buttons
+export const getBookConsultationMessage = (): string => {
+  return `Hello Interiorspace Team, 👋 I came across your website and would like to book a consultation.`;
+};
+
 // Generate WhatsApp URL with pre-filled message and UTM tracking
-export const getWhatsAppUrl = (message: string, source?: string, campaign?: string): string => {
+export const getWhatsAppUrl = (message: string, source?: string, medium?: string, campaign?: string): string => {
   const phoneNumber = WHATSAPP_NUMBER;
   
   // Add UTM parameters for tracking
   const utmSource = source || "website";
-  const utmMedium = "whatsapp";
+  const utmMedium = medium || "whatsapp";
   const utmCampaign = campaign || "testimonial_cta";
   const timestamp = Date.now();
   
   // Append tracking info to message
-  const trackingInfo = `\n\n[Source: ${utmSource} | Campaign: ${utmCampaign} | Ref: ${timestamp}]`;
+  const trackingInfo = `\n\n[Source: ${utmSource} | Medium: ${utmMedium} | Campaign: ${utmCampaign} | Ref: ${timestamp}]`;
   const fullMessage = encodeURIComponent(message + trackingInfo);
   
   return `https://wa.me/${phoneNumber}?text=${fullMessage}`;
+};
+
+// Generate WhatsApp URL specifically for Book Consultation buttons
+export const getBookConsultationWhatsAppUrl = (): string => {
+  const message = getBookConsultationMessage();
+  return getWhatsAppUrl(message, "website", "WhatsApp", "Book_Consultation");
 };
 
 export const trackWhatsAppClick = async (params: CreateLeadParams): Promise<void> => {
