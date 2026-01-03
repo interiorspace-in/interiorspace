@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceGallery from "@/components/ServiceGallery";
 import living1 from "@/assets/services/living-room-1.jpg";
 import living2 from "@/assets/services/living-room-2.jpg";
 import living3 from "@/assets/services/living-room-3.jpg";
@@ -21,6 +22,29 @@ import living18 from "@/assets/services/living-room-18.jpg";
 import living19 from "@/assets/services/living-room-19.jpg";
 import living20 from "@/assets/services/living-room-20.jpg";
 
+const fallbackImages = [
+  { src: living1, alt: "Elegant living room" },
+  { src: living2, alt: "Luxury living space" },
+  { src: living3, alt: "Scandinavian living room" },
+  { src: living4, alt: "Modern living room" },
+  { src: living5, alt: "Luxury living with chandelier" },
+  { src: living6, alt: "Scandinavian minimalist" },
+  { src: living7, alt: "Art deco living room" },
+  { src: living8, alt: "Traditional living room" },
+  { src: living9, alt: "Modern entertainment space" },
+  { src: living10, alt: "Coastal themed living" },
+  { src: living11, alt: "Industrial loft living" },
+  { src: living12, alt: "Bohemian living room" },
+  { src: living13, alt: "Transitional living space" },
+  { src: living14, alt: "Mid-century modern" },
+  { src: living15, alt: "Farmhouse living room" },
+  { src: living16, alt: "Minimalist design" },
+  { src: living17, alt: "Eclectic living space" },
+  { src: living18, alt: "Glamorous living room" },
+  { src: living19, alt: "Zen living room" },
+  { src: living20, alt: "Smart home living" },
+];
+
 const LivingRooms = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,29 +61,7 @@ const LivingRooms = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-              <img src={living1} alt="Elegant living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living2} alt="Luxury living space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living3} alt="Scandinavian living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living4} alt="Modern living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living5} alt="Luxury living with chandelier" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living6} alt="Scandinavian minimalist" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living7} alt="Art deco living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living8} alt="Traditional living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living9} alt="Modern entertainment space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living10} alt="Coastal themed living" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living11} alt="Industrial loft living" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living12} alt="Bohemian living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living13} alt="Transitional living space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living14} alt="Mid-century modern" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living15} alt="Farmhouse living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living16} alt="Minimalist design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living17} alt="Eclectic living space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living18} alt="Glamorous living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living19} alt="Zen living room" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={living20} alt="Smart home living" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-            </div>
-
+            <ServiceGallery serviceSlug="living-rooms" fallbackImages={fallbackImages} />
           </div>
         </section>
       </main>

@@ -113,6 +113,39 @@ export type Database = {
         }
         Relationships: []
       }
+      service_gallery_images: {
+        Row: {
+          alt_text: string
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string
+          is_enabled: boolean
+          service_slug: string
+          updated_at: string
+        }
+        Insert: {
+          alt_text: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url: string
+          is_enabled?: boolean
+          service_slug: string
+          updated_at?: string
+        }
+        Update: {
+          alt_text?: string
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string
+          is_enabled?: boolean
+          service_slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       services: {
         Row: {
           created_at: string
