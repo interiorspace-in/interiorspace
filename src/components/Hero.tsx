@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-interior.jpg";
 import EstimateModal from "@/components/EstimateModal";
+import { getBookConsultationWhatsAppUrl } from "@/hooks/useWhatsAppLeads";
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +34,7 @@ const Hero = () => {
                 Get Free Estimate
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <a href="https://wa.me/919175956905" target="_blank" rel="noopener noreferrer">
+              <a href={getBookConsultationWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="text-lg px-8 w-full sm:w-auto">
                   Book Consultation
                 </Button>
