@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceGallery from "@/components/ServiceGallery";
 import wardrobe1 from "@/assets/services/wardrobe-1.jpg";
 import wardrobe2 from "@/assets/services/wardrobe-2.jpg";
 import wardrobe3 from "@/assets/services/wardrobe-3.jpg";
@@ -21,6 +22,29 @@ import wardrobe18 from "@/assets/services/wardrobe-18.jpg";
 import wardrobe19 from "@/assets/services/wardrobe-19.jpg";
 import wardrobe20 from "@/assets/services/wardrobe-20.jpg";
 
+const fallbackImages = [
+  { src: wardrobe1, alt: "Modern wardrobe closet" },
+  { src: wardrobe2, alt: "Walk-in wardrobe" },
+  { src: wardrobe3, alt: "Custom wardrobe storage" },
+  { src: wardrobe4, alt: "Luxury wardrobe design" },
+  { src: wardrobe5, alt: "Contemporary wardrobe" },
+  { src: wardrobe6, alt: "Built-in wardrobe system" },
+  { src: wardrobe7, alt: "Elegant wardrobe solution" },
+  { src: wardrobe8, alt: "Modular wardrobe design" },
+  { src: wardrobe9, alt: "Spacious walk-in closet" },
+  { src: wardrobe10, alt: "Organized wardrobe with shelving" },
+  { src: wardrobe11, alt: "Mirror finish sliding wardrobe" },
+  { src: wardrobe12, alt: "LED lit luxury wardrobe" },
+  { src: wardrobe13, alt: "Corner wardrobe design" },
+  { src: wardrobe14, alt: "Jewelry drawer wardrobe" },
+  { src: wardrobe15, alt: "Minimalist seamless wardrobe" },
+  { src: wardrobe16, alt: "Glass display wardrobe" },
+  { src: wardrobe17, alt: "Integrated vanity wardrobe" },
+  { src: wardrobe18, alt: "Smart automated wardrobe" },
+  { src: wardrobe19, alt: "Classic carved wardrobe" },
+  { src: wardrobe20, alt: "Full-height storage wardrobe" },
+];
+
 const Wardrobes = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,29 +61,7 @@ const Wardrobes = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-              <img src={wardrobe1} alt="Modern wardrobe closet" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe2} alt="Walk-in wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe3} alt="Custom wardrobe storage" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe4} alt="Luxury wardrobe design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe5} alt="Contemporary wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe6} alt="Built-in wardrobe system" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe7} alt="Elegant wardrobe solution" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe8} alt="Modular wardrobe design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe9} alt="Spacious walk-in closet" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe10} alt="Organized wardrobe with shelving" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe11} alt="Mirror finish sliding wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe12} alt="LED lit luxury wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe13} alt="Corner wardrobe design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe14} alt="Jewelry drawer wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe15} alt="Minimalist seamless wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe16} alt="Glass display wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe17} alt="Integrated vanity wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe18} alt="Smart automated wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe19} alt="Classic carved wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={wardrobe20} alt="Full-height storage wardrobe" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-            </div>
-
+            <ServiceGallery serviceSlug="wardrobes" fallbackImages={fallbackImages} />
           </div>
         </section>
       </main>

@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceGallery from "@/components/ServiceGallery";
 import kitchen1 from "@/assets/services/modular-kitchen-1.jpg";
 import kitchen2 from "@/assets/services/modular-kitchen-2.jpg";
 import kitchen3 from "@/assets/services/modular-kitchen-3.jpg";
@@ -21,6 +22,29 @@ import kitchen18 from "@/assets/services/modular-kitchen-18.jpg";
 import kitchen19 from "@/assets/services/modular-kitchen-19.jpg";
 import kitchen20 from "@/assets/services/modular-kitchen-20.jpg";
 
+const fallbackImages = [
+  { src: kitchen1, alt: "Luxury modular kitchen" },
+  { src: kitchen2, alt: "Contemporary kitchen design" },
+  { src: kitchen3, alt: "Minimalist modular kitchen" },
+  { src: kitchen4, alt: "Modern kitchen layout" },
+  { src: kitchen5, alt: "Elegant kitchen cabinets" },
+  { src: kitchen6, alt: "Spacious kitchen island" },
+  { src: kitchen7, alt: "Sleek kitchen countertops" },
+  { src: kitchen8, alt: "Smart kitchen storage" },
+  { src: kitchen9, alt: "Traditional kitchen design" },
+  { src: kitchen10, alt: "Open plan kitchen" },
+  { src: kitchen11, alt: "White modular kitchen" },
+  { src: kitchen12, alt: "Dark themed kitchen" },
+  { src: kitchen13, alt: "U-shaped kitchen design" },
+  { src: kitchen14, alt: "L-shaped kitchen layout" },
+  { src: kitchen15, alt: "Parallel kitchen design" },
+  { src: kitchen16, alt: "Island kitchen setup" },
+  { src: kitchen17, alt: "Premium kitchen finishes" },
+  { src: kitchen18, alt: "Functional kitchen space" },
+  { src: kitchen19, alt: "Designer kitchen interior" },
+  { src: kitchen20, alt: "Complete kitchen renovation" },
+];
+
 const ModularKitchens = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,29 +61,7 @@ const ModularKitchens = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-              <img src={kitchen1} alt="Luxury modular kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen2} alt="Contemporary kitchen design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen3} alt="Minimalist modular kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen4} alt="Modern kitchen layout" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen5} alt="Elegant kitchen cabinets" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen6} alt="Spacious kitchen island" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen7} alt="Sleek kitchen countertops" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen8} alt="Smart kitchen storage" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen9} alt="Traditional kitchen design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen10} alt="Open plan kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen11} alt="White modular kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen12} alt="Dark themed kitchen" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen13} alt="U-shaped kitchen design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen14} alt="L-shaped kitchen layout" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen15} alt="Parallel kitchen design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen16} alt="Island kitchen setup" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen17} alt="Premium kitchen finishes" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen18} alt="Functional kitchen space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen19} alt="Designer kitchen interior" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={kitchen20} alt="Complete kitchen renovation" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-            </div>
-
+            <ServiceGallery serviceSlug="modular-kitchens" fallbackImages={fallbackImages} />
           </div>
         </section>
       </main>

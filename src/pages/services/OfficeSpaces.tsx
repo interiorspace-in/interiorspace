@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceGallery from "@/components/ServiceGallery";
 import office1 from "@/assets/services/office-1.jpg";
 import office2 from "@/assets/services/office-2.jpg";
 import office3 from "@/assets/services/office-3.jpg";
@@ -21,6 +22,29 @@ import office18 from "@/assets/services/office-18.jpg";
 import office19 from "@/assets/services/office-19.jpg";
 import office20 from "@/assets/services/office-20.jpg";
 
+const fallbackImages = [
+  { src: office1, alt: "Modern office space" },
+  { src: office2, alt: "Executive office" },
+  { src: office3, alt: "Home office workspace" },
+  { src: office4, alt: "Contemporary office design" },
+  { src: office5, alt: "Executive dark wood office" },
+  { src: office6, alt: "Standing desk home office" },
+  { src: office7, alt: "Scandinavian bright workspace" },
+  { src: office8, alt: "Creative studio office" },
+  { src: office9, alt: "Industrial loft workspace" },
+  { src: office10, alt: "Corner office city view" },
+  { src: office11, alt: "Library study office" },
+  { src: office12, alt: "Tech startup workspace" },
+  { src: office13, alt: "Built-in office nook" },
+  { src: office14, alt: "Coastal beach office" },
+  { src: office15, alt: "Mid-century retro office" },
+  { src: office16, alt: "Zen minimalist workspace" },
+  { src: office17, alt: "Bohemian creative office" },
+  { src: office18, alt: "Smart tech office setup" },
+  { src: office19, alt: "Farmhouse rustic office" },
+  { src: office20, alt: "Luxury corporate office" },
+];
+
 const OfficeSpaces = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,29 +61,7 @@ const OfficeSpaces = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-              <img src={office1} alt="Modern office space" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office2} alt="Executive office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office3} alt="Home office workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office4} alt="Contemporary office design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office5} alt="Executive dark wood office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office6} alt="Standing desk home office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office7} alt="Scandinavian bright workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office8} alt="Creative studio office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office9} alt="Industrial loft workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office10} alt="Corner office city view" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office11} alt="Library study office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office12} alt="Tech startup workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office13} alt="Built-in office nook" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office14} alt="Coastal beach office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office15} alt="Mid-century retro office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office16} alt="Zen minimalist workspace" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office17} alt="Bohemian creative office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office18} alt="Smart tech office setup" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office19} alt="Farmhouse rustic office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={office20} alt="Luxury corporate office" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-            </div>
-
+            <ServiceGallery serviceSlug="office-spaces" fallbackImages={fallbackImages} />
           </div>
         </section>
       </main>

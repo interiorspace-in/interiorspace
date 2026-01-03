@@ -14,6 +14,7 @@ import VideoTestimonialsPage from "./pages/VideoTestimonialsPage";
 import AdminAuth from "./pages/AdminAuth";
 import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminWhatsAppLeads from "./pages/AdminWhatsAppLeads";
+import AdminServiceGallery from "./pages/AdminServiceGallery";
 import FullHomeInteriors from "./pages/services/FullHomeInteriors";
 import ModularKitchens from "./pages/services/ModularKitchens";
 import LivingRooms from "./pages/services/LivingRooms";
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/admin/auth" element={<AdminAuth />} />
             <Route path="/admin/testimonials" element={<AdminTestimonials />} />
             <Route path="/admin/whatsapp-leads" element={<AdminWhatsAppLeads />} />
+            <Route path="/admin/service-gallery" element={<AdminServiceGallery />} />
             <Route path="/services/full-home-interiors" element={<FullHomeInteriors />} />
             <Route path="/services/modular-kitchens" element={<ModularKitchens />} />
             <Route path="/services/living-rooms" element={<LivingRooms />} />

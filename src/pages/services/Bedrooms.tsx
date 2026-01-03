@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServiceGallery from "@/components/ServiceGallery";
 import bedroom1 from "@/assets/services/bedroom-1.jpg";
 import bedroom2 from "@/assets/services/bedroom-2.jpg";
 import bedroom3 from "@/assets/services/bedroom-3.jpg";
@@ -21,6 +22,29 @@ import bedroom18 from "@/assets/services/bedroom-18.jpg";
 import bedroom19 from "@/assets/services/bedroom-19.jpg";
 import bedroom20 from "@/assets/services/bedroom-20.jpg";
 
+const fallbackImages = [
+  { src: bedroom1, alt: "Cozy bedroom design" },
+  { src: bedroom2, alt: "Master bedroom suite" },
+  { src: bedroom3, alt: "Contemporary bedroom" },
+  { src: bedroom4, alt: "Warm cozy bedroom" },
+  { src: bedroom5, alt: "Luxury master suite" },
+  { src: bedroom6, alt: "Modern platform bedroom" },
+  { src: bedroom7, alt: "Romantic canopy bed" },
+  { src: bedroom8, alt: "Scandinavian bedroom" },
+  { src: bedroom9, alt: "Luxury tufted headboard" },
+  { src: bedroom10, alt: "Teen bedroom with study" },
+  { src: bedroom11, alt: "Guest bedroom" },
+  { src: bedroom12, alt: "Coastal beach bedroom" },
+  { src: bedroom13, alt: "Rustic farmhouse bedroom" },
+  { src: bedroom14, alt: "Urban loft bedroom" },
+  { src: bedroom15, alt: "Zen minimalist bedroom" },
+  { src: bedroom16, alt: "Art deco bedroom" },
+  { src: bedroom17, alt: "Traditional classic bedroom" },
+  { src: bedroom18, alt: "Bohemian bedroom" },
+  { src: bedroom19, alt: "Smart automated bedroom" },
+  { src: bedroom20, alt: "Hotel-style bedroom" },
+];
+
 const Bedrooms = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,29 +61,7 @@ const Bedrooms = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-              <img src={bedroom1} alt="Cozy bedroom design" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom2} alt="Master bedroom suite" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom3} alt="Contemporary bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom4} alt="Warm cozy bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom5} alt="Luxury master suite" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom6} alt="Modern platform bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom7} alt="Romantic canopy bed" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom8} alt="Scandinavian bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom9} alt="Luxury tufted headboard" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom10} alt="Teen bedroom with study" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom11} alt="Guest bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom12} alt="Coastal beach bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom13} alt="Rustic farmhouse bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom14} alt="Urban loft bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom15} alt="Zen minimalist bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom16} alt="Art deco bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom17} alt="Traditional classic bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom18} alt="Bohemian bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom19} alt="Smart automated bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-              <img src={bedroom20} alt="Hotel-style bedroom" className="w-full h-[300px] object-cover rounded-lg shadow-lg" />
-            </div>
-
+            <ServiceGallery serviceSlug="bedrooms" fallbackImages={fallbackImages} />
           </div>
         </section>
       </main>
